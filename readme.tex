@@ -1,0 +1,113 @@
+\documentclass[twoside,a4paper]{article}
+\usepackage{geometry}
+\geometry{margin=3cm, vmargin={0pt,3cm}}
+\setlength{\topmargin}{-1cm}
+\setlength{\paperheight}{29.7cm}
+\setlength{\textheight}{24.3cm}
+
+% useful packages.
+
+
+
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{subfigure} 
+\usepackage{caption} 
+
+
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{layout}
+
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead{}
+\lhead{ }
+\chead{ }
+\rhead{}
+
+
+\section{About this package}
+
+This matlab package implements the three-dimensional Lagrangian flux calculation  method described in the manuscript ``Lagrangian Flux Calculation Through A Time-Dependent Surface For Scalar Conservation Laws'' by  L. Ding \& B. Huang \& S. Hu \& Q. Zhang. This document lists the relevant files for reproducing the tables and figures in that manuscript.
+
+\section{File}
+
+\subsection{../MoveLFC/src}
+This folder contains the main files of our Lagrangian flux calculation method.
+
+\begin{enumerate}
+\item  \texttt{fluxDR3D.m} is the main subroutine of this package, which constructs a spline-approximated generating surface and computes the flux of a scalar function through a moving surface by our LFC method.
+
+\item \texttt{DRIntegral.m} is the subroutine that evaluates the integral over the spline approximated generating surface.
+
+\item \texttt{splinegauss.m} generates the quadrature rule for evaluating the integral over a spline approximated region in 3-dimensional space. 
+
+
+\item \texttt{cubature\_manager.m} provides nodes and weights of a quadrature routine on $[-1,1]$, which is modified from the package  maintained by  Alvise Sommariva and Marco Vianello \cite{sommariva2009gauss}   \verb|http://www.math.unipd.it/~marcov/software.html|.
+
+\item \texttt{RungeKutta.m} is the subroutine that solves ordinary differential equation by explicit Runge-Kutta method.
+
+
+%  The codes are described by L.N. Trefethen in his clenshaw-curtis paper and by Waldvogel (published by Bit).
+
+  
+
+\item \texttt{flowmap.m} is the subroutine for computing the trajectory of the Lagrangian particle. 
+  
+\end{enumerate}
+
+
+
+\subsection{../MoveLFC/test}
+This folder contains the files which reproduce the tables and figures in the manuscript.
+
+\begin{enumerate}
+\item \texttt{table1.m, table2\_1.m, table2\_2.m,table3\_1.m,table3\_2.m} compute the errors and convergence rates of each tests, which respectively reproduce Table 1,2,3 in the manuscript. The Latex output files are saved in \texttt{../MoveLFC/Tables}. 
+
+\item \texttt{plot2a.m,plot2b.m,plot2c.m,plot2d.m,plotFigure3.m,plotFigure4.m}  reproduce data for Fig 2, 3, 4 in the manuscript, respectively. The output data files are saved in 
+
+\texttt{../MoveLFC/Figures/Data}
+\end{enumerate}
+\subsection{../MoveLFC/Figures}
+\subsubsection{../MoveLFC/Figures/plotFigure2}
+This folder contains the files which reproduce the figure2 in the manuscript. To get figure2, you should run \texttt{../MoveLFC/test/plot2a.m, plot2b.m, plot2c.m, plot2d.m} to generate data files in \texttt{../MoveLFC/Figures/Data}.
+\begin{enumerate}
+    \item \texttt{plotDRcomponent.m} is the subroutine that plots each component surfaces for the donating region.
+    \item \texttt{PaperPlotDR.m} is the subroutine that plots the whole donating region.
+    \item \texttt{Figure2.m} generates figure2 in the manuscript.
+\end{enumerate}
+\subsubsection{../MoveLFC/Figures/plotFigure3\&4}
+This folder contains the files which reproduce the figure3 and figure4 in the manuscript. To get figure3, you should run \texttt{../MoveLFC/test/plotFigure3} to generate data files in \texttt{../MoveLFC/Figures/Data}; to get figure4, you should run \texttt{../MoveLFC/test/plotFigure4} to generate data files in \texttt{../MoveLFC/Figures/Data}.
+\begin{enumerate}
+    \item \texttt{plotDRcomponent.m} is the subroutine that plots each component surfaces for the donating region.
+    \item \texttt{PaperPlotDR.m} is the subroutine that plots the whole donating region.
+    \item \texttt{Figure3.m} generates figure3 in the manuscript.
+    \item \texttt{Figure4.m} generates figure4 in the manuscript.
+\end{enumerate}
+
+\subsection{../useCase}
+This folder includes the moving surface, scalar functions, and velocity fields used in reproducing the tables or figures in our manuscript.
+
+
+
+\bibliography{bib/FiniteVolume,bib/quadrature,bib/MyPaper}   % name your BibTeX data base
+\bibliographystyle{abbrv}
+
+\end{document}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
